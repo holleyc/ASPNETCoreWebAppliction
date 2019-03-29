@@ -12,6 +12,7 @@ namespace ASPNETCoreWebApplication.Controllers
     {
         public IActionResult Index()
         {
+            Debug.WriteLine("My debug string here");
             return View();
         }
 

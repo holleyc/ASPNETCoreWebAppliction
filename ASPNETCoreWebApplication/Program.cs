@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace ASPNETCoreWebApplication
 {
@@ -14,6 +15,14 @@ namespace ASPNETCoreWebApplication
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File("logs\\ASPNETCoreWebApplication.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
+            Log.Information("Application Starting :)");
+
             CreateWebHostBuilder(args).Build().Run();
         }
 
